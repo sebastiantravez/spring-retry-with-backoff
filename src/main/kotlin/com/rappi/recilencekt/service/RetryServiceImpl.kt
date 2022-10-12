@@ -12,7 +12,6 @@ class RetryServiceImpl {
     private var attempts = 1
 
     @Retryable(value = [RuntimeException::class], maxAttempts = 4, backoff = Backoff(2000))
-    @Throws(RuntimeException::class)
     fun retryService(s: String?): String? {
         println("Intento # " + attempts++ + " " + Instant.now())
         if (s == "error") {
